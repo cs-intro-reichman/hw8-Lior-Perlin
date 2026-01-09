@@ -45,7 +45,7 @@
     public boolean follows(String name) {
         // Goes though the loop the amount of follow count there are, and checks if the name is there
         for(int i = 0; i < fCount; i++) {
-            if(follows[i] == name) {
+            if(follows[i].equals(name)) {
                 return true;
             }
         }
@@ -73,7 +73,7 @@
     public boolean removeFollowee(String name) {
         for(int i = 0; i < this.fCount; i++) {
             // Checks if the name exists
-            if(this.follows[i] == name) {
+            if(this.follows[i].equals(name)) {
                 // Let's bring every person a step back on the array
                 while(i < this.fCount - 1) {
                     // Make this current follows the one after
