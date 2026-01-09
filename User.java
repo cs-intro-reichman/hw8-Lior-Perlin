@@ -55,8 +55,8 @@
     /** Makes this user follow the given name. If successful, returns true. 
      *  If this user already follows the given name, or if the follows list is full, does nothing and returns false; */
     public boolean addFollowee(String name) {
-        // Check if the follow list is full or the user already follows the person
-        if(this.fCount == 10 || this.follows(name)) {
+        // Check if the follow list is full or the user already follows the person or we try to make a person follow himself
+        if(this.fCount == 10 || this.follows(name) || this.name == name) {
             return false;
         }
         // If the follow list is not full
@@ -73,7 +73,7 @@
     public boolean removeFollowee(String name) {
         for(int i = 0; i < this.fCount; i++) {
             // Checks if the name exists
-            if(follows(this.follows[i])) {
+            if(this.follows[i] == name) {
                 // Let's bring every person a step back on the array
                 while(i < this.fCount - 1) {
                     // Make this current follows the one after
@@ -112,7 +112,7 @@
      *  (if two users follow each other, they are said to be "friends.") */
     public boolean isFriendOf(User other) {
         // Checks usingn the follows function of the current user's name exist on the other users followees name.
-        return other.follows(this.name);
+        return other.follows(this.name) && this.follows(other.getName());
     }
 
     /** Returns this user's name, and the names that s/he follows. */
